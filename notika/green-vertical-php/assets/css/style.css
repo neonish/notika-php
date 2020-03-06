@@ -4638,6 +4638,7 @@ body.box-layout {
 
 
 
+
 /*----------------------------------------*/
 /*  Vertical Theme
 /*----------------------------------------*/
@@ -4661,6 +4662,10 @@ body {
 
 .header-top-area .container {
     width: 100% !important;
+}
+
+.navbar-nav>li>a {
+    padding: 15px;
 }
 
 aside {
@@ -4742,7 +4747,7 @@ main {
 }
 
 .container {
-    margin: 0 !important;
+    margin: 0 auto !important;
 }
 
 
