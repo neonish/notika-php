@@ -18,34 +18,8 @@
 
 
     # get page folders for navigation
-    $folders = scandir("./pages");
+    $folders = scandir("./src");
 
-    # Generate navigation
-
-    /*# loop folders
-    foreach($folders as $folder){
-
-        # filter php files
-        if( strpos($folder, ".") !== false ){
-            continue;
-        }
-
-        print $folder . ": \n";
-
-        $files = scandir("./pages/" . $folder . "/");
-
-        # loop files
-        foreach($files as $file){
-
-            # filter php files
-            if( strpos($file, ".php") === false ){
-                continue;
-            }
-
-            print substr($file, 0, -4) . "\n";
-        }
-
-    }*/
     
 
     # Include Page
@@ -446,108 +420,70 @@
     <!-- End Header Top Area -->
 
     <!-- Mobile Menu start -->
-    <!--<div class="mobile-menu-area">
+    <div class="mobile-menu-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
-                                <li><a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
-                                    <ul class="collapse dropdown-header-top">
-                                        <li><a href="…………/home/dashboard/1">Dashboard One</a></li>
-                                        <li><a href="index-2.html">Dashboard Two</a></li>
-                                        <li><a href="index-3.html">Dashboard Three</a></li>
-                                        <li><a href="index-4.html">Dashboard Four</a></li>
-                                        <li><a href="analytics.html">Analytics</a></li>
-                                        <li><a href="widgets.html">Widgets</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#demoevent" href="#">Email</a>
-                                    <ul id="demoevent" class="collapse dropdown-header-top">
-                                        <li><a href="inbox.html">Inbox</a></li>
-                                        <li><a href="view-email.html">View Email</a></li>
-                                        <li><a href="compose-email.html">Compose Email</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Interface</a>
-                                    <ul id="democrou" class="collapse dropdown-header-top">
-                                        <li><a href="animations.html">Animations</a></li>
-                                        <li><a href="google-map.html">Google Map</a></li>
-                                        <li><a href="data-map.html">Data Maps</a></li>
-                                        <li><a href="code-editor.html">Code Editor</a></li>
-                                        <li><a href="image-cropper.html">Images Cropper</a></li>
-                                        <li><a href="wizard.html">Wizard</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#demolibra" href="#">Charts</a>
-                                    <ul id="demolibra" class="collapse dropdown-header-top">
-                                        <li><a href="flot-charts.html">Flot Charts</a></li>
-                                        <li><a href="bar-charts.html">Bar Charts</a></li>
-                                        <li><a href="line-charts.html">Line Charts</a></li>
-                                        <li><a href="area-charts.html">Area Charts</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#demodepart" href="#">Tables</a>
-                                    <ul id="demodepart" class="collapse dropdown-header-top">
-                                        <li><a href="normal-table.html">Normal Table</a></li>
-                                        <li><a href="data-table.html">Data Table</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#demo" href="#">Forms</a>
-                                    <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a href="form-elements.html">Form Elements</a></li>
-                                        <li><a href="form-components.html">Form Components</a></li>
-                                        <li><a href="form-examples.html">Form Examples</a></li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">App views</a>
-                                    <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                        <li><a href="notification.html">Notifications</a>
-                                        </li>
-                                        <li><a href="alert.html">Alerts</a>
-                                        </li>
-                                        <li><a href="modals.html">Modals</a>
-                                        </li>
-                                        <li><a href="buttons.html">Buttons</a>
-                                        </li>
-                                        <li><a href="tabs.html">Tabs</a>
-                                        </li>
-                                        <li><a href="accordion.html">Accordion</a>
-                                        </li>
-                                        <li><a href="dialog.html">Dialogs</a>
-                                        </li>
-                                        <li><a href="popovers.html">Popovers</a>
-                                        </li>
-                                        <li><a href="tooltips.html">Tooltips</a>
-                                        </li>
-                                        <li><a href="dropdown.html">Dropdowns</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages</a>
-                                    <ul id="Pagemob" class="collapse dropdown-header-top">
-                                        <li><a href="contact.html">Contact</a>
-                                        </li>
-                                        <li><a href="invoice.html">Invoice</a>
-                                        </li>
-                                        <li><a href="typography.html">Typography</a>
-                                        </li>
-                                        <li><a href="color.html">Color</a>
-                                        </li>
-                                        <li><a href="login-register.html">Login Register</a>
-                                        </li>
-                                        <li><a href="404.html">404 Page</a>
-                                        </li>
-                                    </ul>
-                                </li>
+
+<?php
+    # Generate navigation
+
+    # loop folders
+    foreach($folders as $folder){
+
+        # filter php files
+        if( strpos($folder, ".") !== false ){
+            continue;
+        }
+
+        $class = "";
+        if($current_folder == $folder){
+            $class = " class='active'";
+        }
+
+        print '<li><a data-toggle="collapse" data-target="#'.$folder.'" href="#">'.ucfirst($folder).'</a>' . "\n";
+
+
+        ## Submenu
+        print '<ul class="collapse dropdown-header-top">' . "\n";
+        $class = "";
+        if($current_folder == $folder){
+            $class = "in active ";
+        }
+
+        $files = scandir("./src/" . $folder . "/");
+
+        # loop files
+        foreach($files as $file){
+
+            # filter php files
+            if( strpos($file, ".php") === false ){
+                continue;
+            }
+
+            $class = "";
+            if($current_file . ".php" == $file){
+                $class = ' class="active"';
+            }
+
+            print '<li><a href="'.$global_url_dir.'/'.$folder.'/'.substr($file, 0, -4).'">'.ucfirst(substr($file, 0, -4)).'</a></li>';
+        }
+
+        print '</ul>' . "\n";
+        print '</li>' . "\n";
+    }
+?>
+
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
     <!-- Mobile Menu end -->
 
     <!-- Aside area start -->
@@ -555,80 +491,64 @@
         <!-- Main Menu area start-->
         <div class="main-menu-area mg-tb-40">
             <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-    <?php
-        # Generate navigation
+<?php
+    # Generate navigation
 
-        # loop folders
-        foreach($folders as $folder){
+    # loop folders
+    foreach($folders as $folder){
+
+        # filter php files
+        if( strpos($folder, ".") !== false ){
+            continue;
+        }
+
+        $class = "";
+        if($current_folder == $folder){
+            $class = " class='active'";
+        }
+
+        print '<li'.$class.'><a data-toggle="tab" href="#'.$folder.'"><!--<i class="notika-icon notika-house"></i> --><strong>'.ucfirst($folder).'</strong></a>'. "\n";
+
+
+        ## Submenu
+        print "<div class='tab-content custom-menu-content'>";
+        $class = "";
+        if($current_folder == $folder){
+            $class = "in active ";
+        }
+
+        print '<div id="'.$folder.'" class="tab-pane '. $class .'notika-tab-menu-bg">' . "\n";
+        print '<ul class="notika-main-menu-dropdown">' . "\n";
+
+        $files = scandir("./src/" . $folder . "/");
+
+        # loop files
+        foreach($files as $file){
 
             # filter php files
-            if( strpos($folder, ".") !== false ){
+            if( strpos($file, ".php") === false ){
                 continue;
             }
 
             $class = "";
-            if($current_folder == $folder){
-                $class = " class='active'";
+            if($current_file . ".php" == $file){
+                $class = ' class="active"';
             }
 
-            print '<li'.$class.'><a data-toggle="tab" href="#'.$folder.'"><!--<i class="notika-icon notika-house"></i> --><strong>'.ucfirst($folder).'</strong></a>'. "\n";
-
-
-            ## Submenu
-            print "<div class='tab-content custom-menu-content'>";
-            $class = "";
-            if($current_folder == $folder){
-                $class = "in active ";
-            }
-
-            print '<div id="'.$folder.'" class="tab-pane '. $class .'notika-tab-menu-bg">' . "\n";
-            print '<ul class="notika-main-menu-dropdown">' . "\n";
-
-            $files = scandir("./pages/" . $folder . "/");
-
-            # loop files
-            foreach($files as $file){
-
-                # filter php files
-                if( strpos($file, ".php") === false ){
-                    continue;
-                }
-
-                $class = "";
-                if($current_file . ".php" == $file){
-                    $class = ' class="active"';
-                }
-
-                print '<li'.$class.'><a href="'.$global_url_dir.'/'.$folder.'/'.substr($file, 0, -4).'">'.ucfirst(substr($file, 0, -4)).'</a></li>' . "\n";
-            }
-
-            print '</ul>' . "\n";
-            print '</div>' . "\n";
-            print "</div>";
-
-
-
-            print '</li>' . "\n";
-        }
-    ?>
-        </ul>
-                        
-    <?php
-        
-        # loop folders
-        foreach($folders as $folder){
-
-            # filter php files
-            if( strpos($folder, ".") !== false ){
-                continue;
-            }
-
-            
-
+            print '<li'.$class.'><a href="'.$global_url_dir.'/'.$folder.'/'.substr($file, 0, -4).'">'.ucfirst(substr($file, 0, -4)).'</a></li>' . "\n";
         }
 
-        
-    ?>
+        print '</ul>' . "\n";
+        print '</div>' . "\n";
+        print "</div>";
+
+
+
+        print '</li>' . "\n";
+    }
+?>
+            </ul>
+         
 
         </div>
         <!-- Main Menu area End-->
@@ -639,9 +559,9 @@
     <!-- Start Content area -->
     <main>
     <?php
-        // print "pages/" . $include_str;
-        if( file_exists( "pages/" . $include_str ) ){
-            require_once( "pages/" . $include_str );
+        // print "src/" . $include_str;
+        if( file_exists( "src/" . $include_str ) ){
+            require_once( "src/" . $include_str );
         } else {
             require_once( "404.php" );
         }
